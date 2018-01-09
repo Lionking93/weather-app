@@ -26,16 +26,6 @@ module.exports = function(grunt) {
 				dest: "dist/main-bundle-css.css"
 			}
 		},
-		cssmin: {
-			dist: {
-				files: [{
-					expand: true,
-					src: [ 'dist/main-bundle.css' ],
-					dest: 'dest/',
-					ext: '.min.css'
-				}]
-			}
-		},
 		uglify: {
 			dist: {
 				files: {
@@ -61,7 +51,7 @@ module.exports = function(grunt) {
 			},
 			min: {
 				files: [ 'Gruntfile.js', 'front_end/js_files/*.js', 'front_end/css_files/*.css' ,'front_end/html_files/*.html' ],
-				tasks: [ 'jshint', 'html2js:dist', 'concat_css', 'cssmin:dist', 'concat:dist', 'clean:temp', 'uglify:dist' ],
+				tasks: [ 'jshint', 'html2js:dist', 'concat_css', 'concat:dist', 'clean:temp', 'uglify:dist' ],
 				options: {
 					atBegin: true
 				}
@@ -75,7 +65,6 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-contrib-uglify');
 	grunt.loadNpmTasks('grunt-html2js');
 	grunt.loadNpmTasks('grunt-contrib-watch');
-	grunt.loadNpmTasks('grunt-contrib-cssmin');
 	grunt.loadNpmTasks('grunt-concat-css');
 	
 	grunt.registerTask('dev', ['watch:dev']);

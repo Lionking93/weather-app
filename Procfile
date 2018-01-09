@@ -1,1 +1,1 @@
-web: node app.js
+web: npm install && grunt minified && node app.js
