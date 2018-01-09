@@ -3,13 +3,15 @@ var morgan = require('morgan');
 
 var app = express();
 
-var port = 3000;
-
 app.use("/dist", express.static(__dirname + "/dist"));
 app.use(morgan('dev'));
+
+app.set('port', (process.env.PORT || 3000));
 
 app.get('/', function(req, res) {
 	res.sendFile(__dirname + '/front_end/html_files/index.html');
 });
 
-app.listen(3000);
+app.listen(app.get('port'), function() {
+	console.log("Node app is running in port " + app.get('port'));
+});
