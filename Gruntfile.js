@@ -69,4 +69,5 @@ module.exports = function(grunt) {
 	
 	grunt.registerTask('dev', ['watch:dev']);
 	grunt.registerTask('minified', [ 'watch:min']);
+	grunt.registerTask('deploy', [ 'jshint', 'html2js:dist', 'concat_css', 'concat:dist', 'clean:temp', 'uglify:dist' ]);
 };
