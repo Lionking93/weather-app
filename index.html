@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html ng-app="weatherApp">
+<head>
+	<title>Leon sää-app</title>
+	<script type="text/javascript" src="dist/main-bundle.js"></script>
+	<link rel="stylesheet" href="dist/main-bundle-css.css" />
+</head>
+<body ng-controller="observationController">
+	<h1>{{muuttuja}}</h1>
+	<table class="table">
+		<thead>
+			<tr>
+				<th>Kaupungin nimi</th>
+				<th>Leveysaste</th>
+				<th>Pituusaste</th>
+				<th>Lämpötilat</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr ng-repeat="observation in observations">
+				<td>{{observation.cityName}}</td>
+				<td>{{observation.latitude}}</td>
+				<td>{{observation.longtitude}}</td>
+				<td>
+					<p ng-repeat="temperature in observation.temperatures">{{temperature}}</p>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</body>
+</html>

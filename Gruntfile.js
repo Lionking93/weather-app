@@ -2,11 +2,11 @@ module.exports = function(grunt) {
 	grunt.initConfig({
 		pkg: grunt.file.readJSON('package.json'),
 		jshint: {
-			all: ['Gruntfile.js', 'front_end/*.js']
+			all: ['Gruntfile.js', 'front_end/*/*.js', 'front_end/*/*/*.js']
 		},
 		html2js: {
 			dist: {
-				src: [ 'front_end/html_files/*.html'],
+				src: [ 'front_end/html_files/*.html', '*.html'],
 				dest: 'tmp/html-bundle.js'
 			}
 		},
@@ -15,7 +15,8 @@ module.exports = function(grunt) {
 				separator: ';'
 			},
 			dist: {
-				src: [ 'node_modules/angular/angular.min.js', 'front_end/js_files/*.js', 'tmp/*.js' ],
+				src: [ 'node_modules/angular/angular.min.js', 'front_end/js_files/core.js', 'front_end/js_files/models/*.js',
+				'front_end/js_files/services/*.js', 'front_end/js_files/controllers/*.js', 'tmp/*.js' ],
 				dest: 'dist/main-bundle.js'
 			}
 		},
@@ -43,14 +44,16 @@ module.exports = function(grunt) {
 		},
 		watch: {
 			dev: {
-				files: [ 'Gruntfile.js', 'front_end/js_files/*.js', 'front_end/css_files/*.css', 'front_end/html_files/*.html' ],
+				files: [ 'Gruntfile.js', 'front_end/js_files/core.js' , 'front_end/js_files/models/*.js', 'front_end/js_files/services/*.js', 
+				'front_end/js_files/controllers/*.js', 'front_end/css_files/*.css', 'front_end/html_files/*.html', '*.html' ],
 				tasks: [ 'jshint', 'html2js:dist', 'concat_css', 'concat:dist', 'clean:temp' ],
 				options: {
 					atBegin: true
 				}
 			},
 			min: {
-				files: [ 'Gruntfile.js', 'front_end/js_files/*.js', 'front_end/css_files/*.css' ,'front_end/html_files/*.html' ],
+				files: [ 'Gruntfile.js', 'front_end/js_files/core.js', 'front_end/js_files/models/*.js', 'front_end/js_files/services/*.js', 
+				'front_end/js_files/controllers/*.js', 'front_end/css_files/*.css' ,'front_end/html_files/*.html', '*.html' ],
 				tasks: [ 'jshint', 'html2js:dist', 'concat_css', 'concat:dist', 'clean:temp', 'uglify:dist' ],
 				options: {
 					atBegin: true
