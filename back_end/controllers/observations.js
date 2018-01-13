@@ -37,4 +37,16 @@ router.get('/observations', function(req, res) {
 	res.json(observations);
 });
 
+router.post('/newObservation', function(req, res) {
+	var newObservation = req.body;
+	console.log("Uusi havainto");
+	console.log(newObservation);
+	res.status(200).send("Havainto lisätty");
+});
+
+router.use(function(err, req, res, next) {
+	console.log(err);
+	res.status(400).json(err);
+});
+
 module.exports = router;

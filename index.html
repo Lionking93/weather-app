@@ -7,6 +7,19 @@
 </head>
 <body ng-controller="observationController">
 	<h1>{{muuttuja}}</h1>
+	<h2>Tallenna uusi havainto</h2>
+	<form name="newObservationForm" novalidate>
+		<div class="alert alert-danger" ng-show="newObservationForm.newObservationCity.$invalid && newObservationForm.newObservationCity.$touched">
+			Sinun tulee valita kaupunki!
+		</div>
+		<select name="newObservationCity" ng-options="observation.cityName as observation.cityName for observation in observations" ng-model="newObservation.cityName" required>
+		</select>
+		<div class="alert alert-danger" ng-show="newObservationForm.newObservationTemperature.$invalid && newObservationForm.newObservationTemperature.$touched">
+			Syöttämäsi arvo ei ole validi desimaaliluku, max. 2 desimaalia sallittu
+		</div>
+		<input name="newObservationTemperature" type="number" step="0.01" ng-model="newObservation.temperature" required />
+		<button class="btn btn-info" ng-click="addNewObservation()">Tallenna uusi havainto</button>
+	</form>
 	<table class="table">
 		<thead>
 			<tr>
