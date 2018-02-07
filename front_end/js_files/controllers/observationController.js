@@ -11,7 +11,8 @@ weatherApp.controller("observationController", function($scope, observationServi
 	
 	$scope.addNewObservation = function() {
 		console.log("Uusi havainto lisätty");
-		console.log($scope.newObservationCity);
+		console.log($scope.newObservation.cityName);
+		console.log($scope.newObservation.temperature);
 		observationService.addNewObservation($scope.newObservation).then(function(data) {
 			console.log(data);
 		});

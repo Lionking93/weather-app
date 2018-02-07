@@ -1,5 +1,16 @@
 var express = require('express');
 var router = express.Router();
+var validatorService = require('../services/validationService').service();
+
+var inputValidation = function(req, res, next) {
+	console.log(req.body);
+	var errors = validatorService.validate(req.body);
+	if (errors.errorMessages.length > 0) {
+		res.status(500).send({errors: errors.errorMessages});
+	} else {
+		next();
+	}
+}
 
 router.get('/observations', function(req, res) {
 	var observations = [
@@ -37,16 +48,10 @@ router.get('/observations', function(req, res) {
 	res.json(observations);
 });
 
-router.post('/newObservation', function(req, res) {
+router.post('/newObservation', inputValidation, function(req, res) {
 	var newObservation = req.body;
 	console.log("Uusi havainto");
-	console.log(newObservation);
 	res.status(200).send("Havainto lisätty");
-});
-
-router.use(function(err, req, res, next) {
-	console.log(err);
-	res.status(400).json(err);
 });
 
 module.exports = router;
