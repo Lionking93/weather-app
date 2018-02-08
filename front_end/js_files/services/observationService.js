@@ -8,11 +8,7 @@ weatherApp.factory('observationService', function($http) {
 			});
 		},
 		addNewObservation: function(observation) {
-			var testObservation = {
-				cityName: "",
-				temperature: "apina"
-			};
-			return $http.post('/newObservation', testObservation).then(function(res) {
+			return $http.post('/newObservation', observation).then(function(res) {
 				return res.data;
 			}, function(err) {
 				return err.data;

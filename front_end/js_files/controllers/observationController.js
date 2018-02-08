@@ -4,9 +4,13 @@ weatherApp.controller("observationController", function($scope, observationServi
 		temperature: 0
 	};
 	$scope.observations = [];
+	$scope.cityNames = [];
 	
 	observationService.getObservations().then(function(data) {
 		$scope.observations = data;
+		$scope.cityNames = $scope.observations.map(function(observation) {
+			return observation.cityName;
+		});
 	});
 	
 	$scope.addNewObservation = function() {

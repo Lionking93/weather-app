@@ -1,14 +1,16 @@
 function ValidatorService() {
     this.errors = {
-        errorMessages: []
+        invalidCity:false,
+        invalidTemperature:false
     };
 }
 
 ValidatorService.prototype.checkIfCityNameIsValid = function(cityName) {
     var self = this;
+
     if (cityName === undefined) {
         console.log("City name is undefined!");
-        self.errors.errorMessages.push("Kaupunkia ei ole valittu!");
+        self.errors.invalidCity = true;
         return;
     }
 
@@ -16,17 +18,16 @@ ValidatorService.prototype.checkIfCityNameIsValid = function(cityName) {
 
     if (!cityName.toString().match(cityNameRegex)) {
         console.log("City name is invalid or empty!");
-        self.errors.errorMessages.push("Antamasi kaupunki sisältää virheellisiä merkkejä tai se on tyhjä merkkijono!");
+        self.errors.invalidCity = true;
     }
 }
 
 ValidatorService.prototype.checkIfTemperatureIsValid = function(temperature) {
     var self = this;
-    var specificMessage = "Et ole antanut kelvollista lämpötilaa. Antamasi lämpötilan tulee olla desimaali- tai kokonaisluku.";
 
     if (temperature === undefined) {
         console.log("Temperature is not defined!");
-        self.errors.errorMessages.push(specificMessage);
+        self.errors.invalidTemperature = true;
         return;
     }
 
@@ -34,13 +35,14 @@ ValidatorService.prototype.checkIfTemperatureIsValid = function(temperature) {
 
     if (!temperature.toString().match(floatNumberRegex)) {
         console.log("Temperature is not a number!");
-        self.errors.errorMessages.push(specificMessage);
+        self.errors.invalidTemperature = true;
     }
 }
 
 ValidatorService.prototype.validate = function(input) {
     var self = this;
-    self.errors.errorMessages = [];
+    self.errors.invalidCity = false;
+    self.errors.invalidTemperature = false;
     console.log(input);
     self.checkIfCityNameIsValid(input.cityName);
     self.checkIfTemperatureIsValid(input.temperature);

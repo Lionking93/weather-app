@@ -5,8 +5,8 @@ var validatorService = require('../services/validationService').service();
 var inputValidation = function(req, res, next) {
 	console.log(req.body);
 	var errors = validatorService.validate(req.body);
-	if (errors.errorMessages.length > 0) {
-		res.status(500).send({errors: errors.errorMessages});
+	if (errors.invalidCity || errors.invalidTemperature) {
+		res.status(500).send({errors: errors});
 	} else {
 		next();
 	}

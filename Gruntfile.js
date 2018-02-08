@@ -16,7 +16,7 @@ module.exports = function(grunt) {
 			},
 			dist: {
 				src: [ 'node_modules/angular/angular.min.js', 'front_end/js_files/core.js', 'front_end/js_files/models/*.js',
-				'front_end/js_files/services/*.js', 'front_end/js_files/controllers/*.js', 'tmp/*.js' ],
+				'front_end/js_files/services/*.js', 'front_end/js_files/controllers/*.js', 'front_end/js_files/directives/*.js', 'tmp/*.js' ],
 				dest: 'dist/main-bundle.js'
 			}
 		},
@@ -44,16 +44,18 @@ module.exports = function(grunt) {
 		},
 		watch: {
 			dev: {
-				files: [ 'Gruntfile.js', 'front_end/js_files/core.js' , 'front_end/js_files/models/*.js', 'front_end/js_files/services/*.js', 
-				'front_end/js_files/controllers/*.js', 'front_end/css_files/*.css', 'front_end/html_files/*.html', '*.html' ],
+				files: [ 'Gruntfile.js', 'front_end/js_files/core.js', 'front_end/js_files/models/*.js',
+				'front_end/js_files/services/*.js', 'front_end/js_files/controllers/*.js', 'front_end/js_files/directives/*.js', 'front_end/css_files/*.css', 
+				'front_end/html_files/*.html', '*.html' ],
 				tasks: [ 'jshint', 'html2js:dist', 'concat_css', 'concat:dist', 'clean:temp' ],
 				options: {
 					atBegin: true
 				}
 			},
 			min: {
-				files: [ 'Gruntfile.js', 'front_end/js_files/core.js', 'front_end/js_files/models/*.js', 'front_end/js_files/services/*.js', 
-				'front_end/js_files/controllers/*.js', 'front_end/css_files/*.css' ,'front_end/html_files/*.html', '*.html' ],
+				files: [ 'Gruntfile.js', 'front_end/js_files/core.js', 'front_end/js_files/models/*.js',
+				'front_end/js_files/services/*.js', 'front_end/js_files/controllers/*.js', 'front_end/js_files/directives/*.js', 'front_end/css_files/*.css',
+				'front_end/html_files/*.html', '*.html' ],
 				tasks: [ 'jshint', 'html2js:dist', 'concat_css', 'concat:dist', 'clean:temp', 'uglify:dist' ],
 				options: {
 					atBegin: true
